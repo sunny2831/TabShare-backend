@@ -1,0 +1,2 @@
+class TabSplitsController < ApplicationController
+end
