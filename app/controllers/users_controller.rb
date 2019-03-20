@@ -24,25 +24,26 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by(email_address: params[:email_address])
-    if @user
-      render json: {email_address: @user.email_address, password: @user.password_digest, user_id: @user.id}
+    @user = User.find_by(username: params[:username])
+    # byebug
+    if @user && @user.authenticate(params[:password])
+      render json: {username: @user.username, token: issue_token({id: @user.id})}
     else
-      render json: {error: "Your email address or password is incorrect"}, status: 401
+      render json: {error: "Your username or password is incorrect"}, status: 401
     end
   end
 
-  # def validate
-  #   @user = get_current_user
-  #   if @user
-  #     render json: {email_address: @user.email_address, password: @user.password_digest, user_id: @user.id}
-  #   else
-  #     render json: {error: "Your email address or password is incorrect"}, status: 401
-  #   end
-  # end
+  def validate
+    @user = get_current_user
+    if @user
+      render json: {username: @user.username, token: issue_token({id: @user.id})}
+    else
+      render json: {error: "Your username or password is incorrect"}, status: 401
+    end
+  end
 
   def create
-    @user = User.new(username: params[:username], email_address: params[:email_address], password: params[:password])
+    @user = User.new(username: params[:username], username: params[:username], password: params[:password])
     if @user.save
       render json: @user
     else

@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :owed_to_tabs,
     class_name: 'Tab',
-    foreign_key: :owed_by_user_id
+    foreign_key: :owed_to_user_id
 
   def self.find_by_credentials(email, password)
     @user = User.find_by(email: email)
