@@ -6,13 +6,13 @@ class ApplicationController < ActionController::API
 
   def get_current_user
     id = decoded_token['id']
-    User.find_by(id: :id)
+    User.find_by(id: id)
   end
 
   def decoded_token
     token = request.headers['Authorization']
     begin
-      JWT.decode(token, secret)
+      JWT.decode(token, secret).first
     rescue
       {}
     end
@@ -21,5 +21,5 @@ class ApplicationController < ActionController::API
   def secret
     ENV['MY_SUPER_SECRET']
   end
-  
+
 end
