@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :email, uniqueness: {case_sensitive: true}
+  validates :username, uniqueness: {case_sensitive: true}
+
   has_secure_password
 
   has_many :owed_by_tabs,
