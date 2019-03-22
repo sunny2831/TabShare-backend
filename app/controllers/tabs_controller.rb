@@ -32,6 +32,7 @@ class TabsController < ApplicationController
       render json: {error: "Sorry tab was not created"}, status: 400
     end
   end
+
   # create_table "tabs", force: :cascade do |t|
   #   t.float "tab_total"
   #   t.float "inital_amount_owed"

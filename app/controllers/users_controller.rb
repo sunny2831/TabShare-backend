@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-     
+
     def index
       @users = User.all
       render json: @users
@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
     def get_owed_by_tabs
       @user = get_current_user
+      # byebug
       if @user
         render json: @user.owed_by_tabs
       else
@@ -24,10 +25,11 @@ class UsersController < ApplicationController
     end
 
     def login
-      @user = User.find_by(username: params[:username])
       # byebug
+      @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         render json: {username: @user.username, token: issue_token({id: @user.id})}
+        # byebug
       else
         render json: {error: "Your username or password is incorrect"}, status: 401
       end
