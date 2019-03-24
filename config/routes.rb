@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # get 'users/search', :to => 'users#search'
   # get 'users/recent_activity', :to => 'users#recent_activity'
 
-  resources :users, only: [:create, :index]
+  resources :users, only: [:create, :index] do
+    get 'friends', to: 'users#get_friends'
+  end
+
   get 'owed_by_tabs', to: 'users#get_owed_by_tabs'
   get 'owed_to_tabs', to: 'users#get_owed_to_tabs'
 

@@ -24,6 +24,15 @@ class UsersController < ApplicationController
       end
     end
 
+    def get_friends
+      @user = get_current_user
+      if @user
+        render json: @user.friends
+      else
+        render json: {error: "No friends here"}, status: 401
+      end
+    end
+
     def login
       # byebug
       @user = User.find_by(username: params[:username])
