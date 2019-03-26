@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
     def get_friends
       @user = get_current_user
+      # byebug
       if @user
         render json: @user.friends
       else
