@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     def get_owed_to_tabs
       @user = get_current_user
       if @user
+        # byebug
         render json: @user.owed_to_tabs
       else
         render json: {error: "Not a valid user"}, status: 401
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
 
     def validate
       @user = get_current_user
+      # byebug
       if @user
         render json: {username: @user.username, token: issue_token({id: @user.id})}
       else
