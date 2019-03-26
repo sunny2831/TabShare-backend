@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     def create
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
-        render json: @user
+        render json: {username: @user.username, token: issue_token({id: @user.id})}
       else
         render json: {error: "Unable to create user"}, status: 401
       end
