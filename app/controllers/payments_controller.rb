@@ -12,7 +12,7 @@ class PaymentsController < ApplicationController
   end
 
   def payment_params
-    params.permit(:bill_id, :paying_user_id, :submitting_user_id, :payment_amount)
+    params.permit(:tab_id, :paying_user_id, :submitting_user_id, :payment_amount)
   end
 
 end
