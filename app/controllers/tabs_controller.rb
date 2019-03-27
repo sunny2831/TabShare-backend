@@ -22,9 +22,9 @@ class TabsController < ApplicationController
 
       description: params[:description]
       })
-      owed_to = User.find(params[:owed_to_user])
+      owed_to = User.find(params[:owed_to_user_id])
       @tab.owed_to_user = owed_to
-      owed_by = User.find(params[:owed_by_user])
+      owed_by = User.find(params[:owed_by_user_id])
       @tab.owed_by_user = owed_by
     if @tab.save
       render json: @tab

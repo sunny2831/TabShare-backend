@@ -37,9 +37,9 @@ class UsersController < ApplicationController
 
     def login
       # byebug
-      @user = User.find_by(username: params[:username])
+      @user = User.find_by(username: params[:username]) 
       if @user && @user.authenticate(params[:password])
-        render json: {username: @user.username, token: issue_token({id: @user.id})}
+        render json: {username: @user.username, id: @user.id || 'couldnt find user', token: issue_token({id: @user.id})}
         # byebug
       else
         render json: {error: "Your username or password is incorrect"}, status: 401
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     def create
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
-        render json: {username: @user.username, token: issue_token({id: @user.id})}
+        render json: {username: @user.username, id: @user.id, token: issue_token({id: @user.id})}
       else
         render json: {error: "Unable to create user"}, status: 401
       end

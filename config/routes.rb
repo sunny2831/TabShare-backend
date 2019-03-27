@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'owed_to_tabs', to: 'users#get_owed_to_tabs'
 
 
-  resources :tabs, only: [:create, :index] do
+  resources :tabs, only: [:create, :index, :destroy] do
     get 'payments', to: 'tabs#made_payments'
     post 'payments', to: 'tabs#make_payments'
   end

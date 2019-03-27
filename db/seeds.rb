@@ -55,7 +55,7 @@ descriptions = [
 ]
 
 50.times do
- Tab.create(tab_total: rand(100...500), initial_amount_owed: rand(50...250), owed_by_user_id: rand(1...10), owed_to_user_id: rand(11...20), description: descriptions.sample)
+ Tab.create(tab_total: rand(100...198), initial_amount_owed: rand(1...99), owed_by_user_id: rand(1...10), owed_to_user_id: rand(11...20), description: descriptions.sample)
 end
 #
 #
