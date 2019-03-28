@@ -33,6 +33,13 @@ class TabsController < ApplicationController
     end
   end
 
+  def destroy
+    @tab = Tab.find_by(id: params[:id])
+    if @tab
+      @tab.delete
+    end
+  end
+
   # create_table "tabs", force: :cascade do |t|
   #   t.float "tab_total"
   #   t.float "inital_amount_owed"
